@@ -18,7 +18,7 @@ class MyOwnDataset(InMemoryDataset):
     
     # 生成数据集所用的方法
     def process(self):
-        folder_path = '/home/user/hj/train-ticket-data/dataset/vector/'
+        folder_path = 'xxx/vector/'
         # 获取文件夹中的所有文件和文件夹列表
         file_list = os.listdir(folder_path)
         sorted_file_list = file_list
