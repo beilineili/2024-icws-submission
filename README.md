@@ -32,7 +32,7 @@ _**FaaSRCA**_ is a full lifecycle root cause analysis method for serverless appl
 │   ├── embedding_model.py: create and init embedding model for metrics/traces
 │   ├── sentence_embedding.py: embed logs
 │   └── all_embedding.py: fuse multi-modal embeddings
-├── rca 
+├── preprocess 
 │   ├── classify_graph.py: obtain graph category
 │   └── template_preprocess.py: preprocess log template
 ```
