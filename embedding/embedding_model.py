@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 
-# Embedding 是一个继承自nn.Module的PyTorch模型类 
 class Embedding(nn.Module):
     def __init__(self, batch_size, hidden_embedding_size, output_dim, dtype=torch.double):
         super(Embedding, self).__init__()
@@ -27,14 +26,11 @@ class Embedding(nn.Module):
         for k in embedding_matrix:
             nn.init.xavier_uniform_(k)
     
-    # 将输入数据 t 通过模型进行处理并生成输出 embed
     def forward(self, t):
         output = []
         t = t.unsqueeze(2) 
-        # tW+b：将 t 与随机初始化的权重向量 W 相乘，然后添加随机初始化的偏置向量 b
         projection = torch.mul(t, self.params['weights']) + self.params['biases']
-        s = projection 
-        # Etime = sEs，得到时间嵌入向量 Etime
+        s = self.pred(projection) 
         embed = torch.einsum('bsv,vi->bsi', s, self.params['embedding_matrix'])
         return embed
 
@@ -44,7 +40,6 @@ if __name__=='__main__':
     hidden_dim = 128 
     embedding_dim = 768
 
-    # 创建和初始化model
     time_model = Embedding(batch_size, hidden_dim, embedding_dim)
     cpu_usage_model = Embedding(batch_size, hidden_dim, embedding_dim)
     mem_usage_model = Embedding(batch_size, hidden_dim, embedding_dim)
