@@ -167,7 +167,6 @@ if __name__=='__main__':
     data = dataset_data._data
     contamination_ = sum(data.y).item() / len(data.y)
 
-    # 创建 GAT auto-encoder，设置参数，例如隐藏层维度 hid_dim、层数 num_layers 和训练周期 epoch
     detector = GAE(hid_dim=hidden_num, num_layers=layers_num, lr=0.004, epoch=epoch_num, contamination=contamination_, backbone=GAT, gpu=0, verbose=3, weight=1.0)
 
     data_loader = DataLoader(dataset_data, batch_size=128, shuffle=True)
